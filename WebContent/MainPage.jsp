@@ -7,6 +7,7 @@
 <title>Formular JSP - Determining Compound Interest</title>
 </head>
 <body bgcolor="#E0E0E0">
+<jsp:useBean id="interest" class="model.Interest"/>
 <jsp:scriptlet>
 Object result;
 result = request.getAttribute("interest");
@@ -16,7 +17,7 @@ if(result == null){
 	outputMsg = "";
 }
 </jsp:scriptlet>
-<form method="POST" action="/DeterminingCompoundInterest/Order">
+<form method="POST">
 <table border="4">
 	<tr>
 		<td colspan="2"><h2>Determining Compound Interest</h2></td>
@@ -38,7 +39,8 @@ if(result == null){
 		<td><input type="number" name="compounded" min="0" size="25" required/></td>
 	</tr>
 	<tr>
-		<td><b><jsp:expression>outputMsg</jsp:expression></b></td>
+		<jsp:setProperty name="interest" property="*"/>
+		<td><b><jsp:getProperty name="interest" property="interest"/></b></td>
 		<td><input type="submit" value="Calculate"/></td>
 	</tr>
 </table>
